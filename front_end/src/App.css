@@ -1,0 +1,73 @@
+html{
+  height: 100%;
+}
+body{
+  box-sizing: border-box;
+  background: #bdc3c7;
+  background: -webkit-linear-gradient(to right, #bdc3c7, #2c3e50);
+  background: linear-gradient(to right, #bdc3c7, #2c3e50);
+  color: rgb(101, 98, 98);
+  /* font-family: 'Open Sans', sans-serif; */
+}
+.add-task{
+  background-color: white;
+  width: 30rem;
+  height: 8rem;
+  box-shadow: 5px 6px 10px rgb(73, 71, 71);
+  position:absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%,-20%);
+}
+#todo_input{
+  width: 20rem;
+  height: 2rem;
+  border: 1px solid gray;
+}
+#form{
+  position:absolute;
+  top: 50%;
+  /* left: 50%; */
+  transform: translate(10%,-50%);
+}
+#form > button{
+  width: 4rem;
+  height: 2.3rem;
+  background-color: #4f5d6a;
+  border: none;
+  color: white;
+  border-radius: 3px;
+}
+.all-task{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,0);
+  width: 30rem;
+  box-shadow: 5px 6px 10px rgb(73, 71, 71);
+  transition: transform 2s;
+}
+.task{
+  background-color: rgb(241, 250, 255);
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(203, 200, 200);
+  transition: transform 1s;
+}
+.title{
+  padding: 1rem;
+  width: 70%;
+}
+.button{
+  background-color: transparent;
+  height: 2.3rem;
+  border: 1px solid rgb(136, 136, 245);
+  border-radius: 3px;
+  margin-right: 5px;
+  transition: transform .5s ;
+}
+button:hover{
+  background-color: grey;
+  transform: scale(1.1);
+}
