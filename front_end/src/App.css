@@ -45,7 +45,6 @@ body{
   transform: translate(-50%,0);
   width: 30rem;
   box-shadow: 5px 6px 10px rgb(73, 71, 71);
-  transition: transform 2s;
 }
 .task{
   background-color: rgb(241, 250, 255);
@@ -53,7 +52,6 @@ body{
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgb(203, 200, 200);
-  transition: transform 1s;
 }
 .title{
   padding: 1rem;
