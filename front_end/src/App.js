@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {useState,useEffect} from 'react'
 
@@ -18,7 +17,6 @@ function App() {
     .then(data=>setTodoList(data))
   }
   const handleChange=(e)=>{
-    const name = e.target.name
     const value = e.target.value
     setActiveItem({
       ...activeItem,title: value
@@ -38,9 +36,10 @@ function App() {
     }
     return cookieValue;
   }
+  let csrftoken = getCookie('csrftoken')
+
   const handleSubmit=(e)=>{
     e.preventDefault()
-    let csrftoken = getCookie('csrftoken')
     let url = ""
     activeItem.id?(url=`http://127.0.0.1:8000/api/task-update/${activeItem.id}/`)
     :(url= "http://127.0.0.1:8000/api/task-create/")
@@ -54,9 +53,9 @@ function App() {
   }).then(()=>{
     fetchTasks()
     setActiveItem({
+    ...activeItem,
     id: null,
     title: "",
-    completed: false
   }) 
   }).catch((error)=>{
     console.log('ERROR:' ,error);
@@ -67,11 +66,20 @@ function App() {
       method: 'DELETE',
     }).then(()=>{
       fetchTasks()
-      setActiveItem({
-      id: null,
-      title: "",
-      completed: false
-  })
+    })
+  }
+  const strikeUnstrike=(task)=>{
+    task.completed = !task.completed
+    fetch(`http://127.0.0.1:8000/api/task-update/${task.id}/`,{
+      method: 'POST',
+      headers : {
+        'content-type': 'application/json',
+        'X-CSRFToken' : csrftoken
+      },
+      body : JSON.stringify({completed:task.completed, title:task.title})
+
+    }).then(()=>{
+      fetchTasks()
     })
   }
 
@@ -88,10 +96,10 @@ function App() {
           todoList.map((task)=>{
               return(
                 <div className="task" key={task.id}>
-                  <span className="title">{task.title}</span>
-
-                  <button onClick={()=>setActiveItem({id:task.id,title:task.title,completed:task.completed})} className="button">edit</button>
-                  <button className="button" onClick={()=>handleDelete(task.id)}>done</button>
+                  {task.completed ?(<strike onClick={()=>strikeUnstrike(task)} className="title">{task.title}</strike>)
+                  : (<span onClick={()=>strikeUnstrike(task)} className="title">{task.title}</span>)}                 
+                  <button onClick={()=>task.completed || setActiveItem({id:task.id,title:task.title,completed:task.completed})} className="button">edit</button>
+                  <button className="button" onClick={()=>handleDelete(task.id)}>delete</button>
                 </div>
               )
           })

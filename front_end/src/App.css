@@ -10,7 +10,7 @@ body{
   /* font-family: 'Open Sans', sans-serif; */
 }
 .add-task{
-  background-color: white;
+  background-color: whitesmoke;
   width: 30rem;
   height: 8rem;
   box-shadow: 5px 6px 10px rgb(73, 71, 71);
@@ -27,7 +27,6 @@ body{
 #form{
   position:absolute;
   top: 50%;
-  /* left: 50%; */
   transform: translate(10%,-50%);
 }
 #form > button{
@@ -48,14 +47,21 @@ body{
 }
 .task{
   background-color: rgb(241, 250, 255);
-  height: 5rem;
+  height: auto;
   display: flex;
+  padding: 1em;
   align-items: center;
   border-bottom: 1px solid rgb(203, 200, 200);
+  transition: background-color .5s;
+}
+.task:hover{
+  background-color: rgb(219, 218, 218);
 }
 .title{
+  display: inline-block;
   padding: 1rem;
-  width: 70%;
+  width: 20em;
+  line-break: auto;
 }
 .button{
   background-color: transparent;
