@@ -1,7 +1,14 @@
 import './App.css';
 import {useState,useEffect} from 'react'
+import Home from './components/home'
+import Nothome from './components/nothome'
+import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom'
 
 function App() {
+  <Router>
+    <Route exact path="/home" component={Home}>kkkkkk</Route>
+    <Route exact path="/nothome" component={Nothome}></Route>
+  </Router>
   const[todoList,setTodoList] = useState([])
   const[activeItem,setActiveItem] = useState({
     id: null,
